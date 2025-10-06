@@ -19,6 +19,7 @@ EXPOSE 80
 # Set environment variables
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
+ENV PORT=80
 
-# Run the application
-CMD ["python", "-m", "flask", "run", "--host=0.0.0.0", "--port=80"]
+# Run the application with Gunicorn
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:80", "--workers", "2"]
